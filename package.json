@@ -35,9 +35,6 @@
     "url" : "https://github.com/misirlu13/Socket.MVC/issues",
     "email" : "brad@torchdevelopment.com"
   },
-  "scripts": {
-    "start": "npm install"
-  },
   "main": "index.js",
   "engines": {
     "node": ">= 0.4.0"
