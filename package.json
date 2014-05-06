@@ -31,6 +31,10 @@
     "type": "git",
     "url": "https://github.com/misirlu13/Socket.MVC"
   },
+  "bugs": { 
+    "url" : "https://github.com/misirlu13/Socket.MVC/issues",
+    "email" : "brad@torchdevelopment.com"
+  },
   "main": "index.js",
   "engines": {
     "node": ">= 0.4.0"
