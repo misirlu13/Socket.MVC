@@ -1,0 +1,38 @@
+{
+  "name": "socket.mvc",
+  "version": "0.0.01",
+  "description": "Create a wrapper for Socket.io that allows flexibility in an MVC style application",
+  "homepage": "http://torchdevelopment.com",
+  "license" : "MIT",
+  "keywords": [
+    "websocket",
+    "socket",
+    "realtime",
+    "socket.io",
+    "comet",
+    "ajax",
+    "mvc"
+  ],
+  "author": {
+    "name": "Bradley Drake",
+    "email": "brad@torchdevelopment.com"
+  },
+  "contributors": [
+    {
+      "name": "Bradley Drake",
+      "email": "brad@torchdevelopment.com"
+    }
+  ],
+  "dependencies": {
+    "underscore": "~1.6.0",
+    "async": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LearnBoost/socket.io.git"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.4.0"
+  }
+}
