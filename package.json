@@ -1,6 +1,6 @@
 {
   "name": "socket.mvc",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Create a wrapper for Socket.io that allows flexibility in an MVC style application",
   "homepage": "http://torchdevelopment.com",
   "license" : "MIT",

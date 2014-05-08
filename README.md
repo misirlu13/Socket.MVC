@@ -80,6 +80,12 @@ The `Config` object is structured as the following:
 ```
 Each `set` and `enable` property can accept a single object, or an array of object.  The key will be the option and the value will be the value of the option.  Please refer to your version of Socket.io for the proper configuration options.
 
+### Everyone
+Everyone is an API that allows you to broadcast an event to every socket (including the socket that triggered the event).
+```js
+socketMVC.everyone('sendToEveryone!', {'foo': 'bar'});
+```
+
 ### On
 The on event registers a listener for Socket.io, but it is preferred that you use this method inside a socket listener file.  If you choose to use the API it will still work, but what takes place is that Socket.MVC will store your `on` events in a queue, and when a client connects to Socket.io the listeners will then be registered asynchronously.
 
