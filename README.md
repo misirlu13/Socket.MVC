@@ -60,9 +60,9 @@ In the example above you see 3 arguments being passed into the init function.  T
 
 ### Init
 
-Init takes up to 4 different arguments.
+Init takes 3 different arguments.
 
-`socketMVC.init('socket.io', 'app', 'path', 'config')`
+`socketMVC.init('socket.io', 'socket', 'config')`
   - `Socket.io` This is simply a `var` that is equal to `require('socket.io')`
   - `Socket` This is the socket that is returned from Socket.io after a connection is made
   - `Config` This is an obj that you can pass to configure your Socket.MVC experience
@@ -88,7 +88,7 @@ socketMVC.broadcast('sendToMostlyEveryone', 'Sending this to everyone but the so
 ```
 
 ### Everyone
-Everyone is an API that allows you to broadcast an event to every socket (including the socket that triggered the event).
+Everyone is an API that allows you to broadcast an event to every socket (including the socket that triggered the event).  This API also takes advantage of the event queuing system.
 ```js
 socketMVC.everyone('sendToEveryone!', 'Sending this to everyone connected!!');
 ```
