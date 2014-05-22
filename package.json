@@ -1,9 +1,9 @@
 {
   "name": "socket.mvc",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Create a wrapper for Socket.io that allows flexibility in an MVC style application",
   "homepage": "http://torchdevelopment.com",
-  "license" : "MIT",
+  "license": "MIT",
   "keywords": [
     "websocket",
     "socket",
@@ -25,18 +25,22 @@
   ],
   "dependencies": {
     "underscore": "~1.6.0",
-    "async": "*"
+    "async": "*",
+    "colors": "*"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/misirlu13/Socket.MVC"
   },
-  "bugs": { 
-    "url" : "https://github.com/misirlu13/Socket.MVC/issues",
-    "email" : "brad@torchdevelopment.com"
+  "bugs": {
+    "url": "https://github.com/misirlu13/Socket.MVC/issues",
+    "email": "brad@torchdevelopment.com"
   },
+  "readme": "Socket.MVC\n==========\n\nSocket.MVC extends the usability of Socket.io in an MVC environment.  The current version of Socket.MVC has only been tested in an application using Express.  Future releases will be tested using the different frameworks that Socket.io supports.  Socket.MVC is designed for versions 0.9x, but in future releases versions 1.0 will be supported.  The only thing Socket.MVC wants to do is give you the freedom to emit from any file in your application at any time.\n\n## Install\n\nFirst you will need a version of Socket.io.  The fastest way to accomplish this is using NPM.\n\n    npm install socket.io\n\nNext use NPM to install Socket.MVC\n\n  npm install socket.mvc\n\n## How to use\n\napp.js\n```js\nvar express = require('express');\nvar routes = require('./routes');\nvar app = module.exports = express.createServer('127.0.0.1');\nvar io = require('socket.io').listen(server);\nvar socketMVC = require('socket.mvc');\n\n//Set socket.io configuration here\n\nio.sockets.on('connection', function (socket) {\n socketMVC.init(io, socket, {\n    debug: true,\n    filePath: ['./routes/socket.js']\n  });\n});\n```\n\nroutes/socket.js\n```js\nmodule.exports = function (socket) {\n  //You can declare all of your socket listeners in this file, but it's not required\n\n  socket.on('login', function() {\n   console.log('logged in')\n  });\n};\n```\n\ncontrollers/index.js\n```js\nvar socketMVC = require('socket.mvc');\n\n/*Login logic*/\nsocketMVC.emit('logged in');\n```\n\n### How to get the most out of Socket.MVC\n\nIn the example above you see 3 arguments being passed into the init function.  The first is Socket.io, is the socket returned from the Socket.io connection, and the third is the options object for Socket.MVC. You do not have to place all of your socket listeners in a separate JS file, but it will make your life easier.  The best feature of Socket.MVC is that you can simply require the module, and then just send an emit, or a broadcast or any other information through the websocket inside any function in any file of the application.\n\n## API\n\n### Init\n\nInit takes up to 4 different arguments.\n\n`socketMVC.init('socket.io', 'app', 'path', 'config')`\n  - `Socket.io` This is simply a `var` that is equal to `require('socket.io')`\n  - `Socket` This is the socket that is returned from Socket.io after a connection is made\n  - `Config` This is an obj that you can pass to configure your Socket.MVC experience\n\nThe `Config` object is structured as the following:\n```js\n{\n  debug: boolean, //Default to true, but in production make sure you change it to false\n filePath:  string or array //This can be an array of file paths, or a single file path to register Socket.io listeners\n}\n```\n\n### Emit\nEmit is the bread and butter of Socket.MVC, because you can now send data via Websockets from any file in your application.  Socket.MVC will queue events that have taken place prior to a websocket connection, meaning, if you start up your application and no one has connected to it (for the first time only), but events are running `SocketMVC.emit`, the events will be thrown into a queue, and once a connection is made the queued events will be sent to appropriate connections.\n```js\nsocketMVC.emit('sendToSomeone', 'Sending this to the socket that triggered the event');\n```\n\n### Broadcast\nBroadcast will send data to every connection except the connection that triggered the event.  This will also take advantage of the event queuing system, and will broadcast once a connection is made.\n```js\nsocketMVC.broadcast('sendToMostlyEveryone', 'Sending this to everyone but the socket who triggered the event');\n```\n\n### Everyone\nEveryone is an API that allows you to broadcast an event to every socket (including the socket that triggered the event).\n```js\nsocketMVC.everyone('sendToEveryone!', 'Sending this to everyone connected!!');\n```\n\n### On\nThe on event registers a listener for Socket.io, but it is preferred that you use this method inside a socket listener file.  If you choose to use the API it will still work, but what takes place is that Socket.MVC will store your `on` events in a queue, and when a client connects to Socket.io the listeners will then be registered asynchronously.\n\n### Socket.io API's\nSince Socket.MVC is just a wrapping mechanism for Socket.io, all of the same API's can be used using the Socket.MVC module.  Please see a list of all of the API's available by visiting the Socket.io Github page, or http://socket.io (depending on your version)\n",
   "main": "index.js",
   "engines": {
     "node": ">= 0.4.0"
-  }
+  },
+  "_id": "socket.mvc@0.1.3",
+  "_from": "socket.mvc@*"
 }
